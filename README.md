@@ -2,9 +2,9 @@
 
 This `README.md` contains a set of checklists for our contest collaboration.
 
-Your contest will use two repos: 
+Your contest will use two repos:
 - **a _contest_ repo** (this one), which is used for scoping your contest and for providing information to contestants (wardens)
-- **a _findings_ repo**, where issues are submitted. 
+- **a _findings_ repo**, where issues are submitted.
 
 Ultimately, when we launch the contest, this contest repo will be made public and will contain the smart contracts to be reviewed and all the information needed for contest participants. The findings repo will be made public after the contest is over and your team has mitigated the identified issues.
 
@@ -18,23 +18,23 @@ Some of the checklists in this doc are for **C4 (🐺)** and some of them are fo
 - [X] Create a new private repo named `YYYY-MM-sponsorname` using this repo as a template.
 - [ ] Get GitHub handles from sponsor.
 - [ ] Add sponsor to this private repo with 'maintain' level access.
-- [ ] Send the sponsor contact the url for this repo to follow the instructions below and add contracts here. 
+- [ ] Send the sponsor contact the url for this repo to follow the instructions below and add contracts here.
 - [ ] Delete this checklist and wait for sponsor to complete their checklist.
 
 ## ⭐️ Sponsor: Provide contest details
 
 Under "SPONSORS ADD INFO HERE" heading below, include the following:
 
-- [ ] Name of each contract and:
-  - [ ] lines of code in each
-  - [ ] external contracts called in each
-  - [ ] libraries used in each
-- [ ] Describe any novel or unique curve logic or mathematical models implemented in the contracts
-- [ ] Does the token conform to the ERC-20 standard? In what specific ways does it differ?
-- [ ] Describe anything else that adds any special logic that makes your approach unique
-- [ ] Identify any areas of specific concern in reviewing the code
-- [ ] Add all of the code to this repo that you want reviewed
-- [ ] Create a PR to this repo with the above changes.
+- [X] Name of each contract and:
+  - [X] lines of code in each
+  - [X] external contracts called in each
+  - [X] libraries used in each
+- [X] Describe any novel or unique curve logic or mathematical models implemented in the contracts
+- [X] Does the token conform to the ERC-20 standard? In what specific ways does it differ?
+- [X] Describe anything else that adds any special logic that makes your approach unique
+- [X] Identify any areas of specific concern in reviewing the code
+- [X] Add all of the code to this repo that you want reviewed
+- [X] Create a PR to this repo with the above changes.
 
 ---
 
@@ -45,7 +45,7 @@ Under "SPONSORS ADD INFO HERE" heading below, include the following:
 - [ ] Any other Twitter handles we can/should tag in (e.g. organizers' personal accounts, etc.)
 - [ ] Your Discord URI
 - [ ] Your website
-- [ ] Optional: Do you have any quirks, recurring themes, iconic tweets, community "secret handshake" stuff we could work in? How do your people recognize each other, for example? 
+- [ ] Optional: Do you have any quirks, recurring themes, iconic tweets, community "secret handshake" stuff we could work in? How do your people recognize each other, for example?
 - [ ] Optional: your logo in Discord emoji format
 
 ---
@@ -87,3 +87,13 @@ Under "SPONSORS ADD INFO HERE" heading below, include the following:
 This repo will be made public before the start of the contest. (C4 delete this line when made public)
 
 [ ⭐️ SPONSORS ADD INFO HERE ]
+
+Contracts:
+
+* [Unlock.sol](https://github.com/unlock-protocol/unlock/blob/master/smart-contracts/contracts/Unlock.sol) : a factory contract that deploys all locks. It is also called back by the lock on key purchases to mint/distribute new UDT tokens. This contract is deployed once on each network currently supported (Mainnet, xDAI, Polygon, BSC). It is upgradable and currently 'owned' by a Gnosis multisig but will eventually be transfered to the DAO.
+
+* [PublicLock](https://github.com/unlock-protocol/unlock/blob/master/smart-contracts/contracts/PublicLock.sol): the actual "membership" contract that implements ERC721 and a few others. It is deployed multiple times by creators.
+
+* [UnlockDiscountTokenV2](https://github.com/unlock-protocol/unlock/blob/master/smart-contracts/contracts/UnlockDiscountTokenV2.sol): the governance token contract (UDT). The only minter is the Unlock contract.
+
+
