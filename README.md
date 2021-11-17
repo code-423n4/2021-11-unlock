@@ -84,9 +84,13 @@ Under "SPONSORS ADD INFO HERE" heading below, include the following:
 - Starts November 18, 2021 00:00 UTC
 - Ends November 24, 2021 23:59 UTC
 
-[ ⭐️ SPONSORS ADD INFO HERE ]
+## Overview
 
 Unlock is a protocol for memberships that lets creators of all kinds deploy a "membership contract" (we call that a Lock) and that lets them then sell memberships (keys, implemented as NFT).
+
+[More high level details can be found there](https://docs.unlock-protocol.com/).
+
+You can use the [Unlock Dashboard](https://app.unlock-protocol.com/dashboard) to deploy a lock on Rinkeby and then purchase a key using our "Demo". [The following video shows the way to achieve this](https://share.getcloudapp.com/4guPNlvW).
 
 ## Contracts:
 
@@ -96,18 +100,18 @@ Unlock is a protocol for memberships that lets creators of all kinds deploy a "m
 
 * [UnlockDiscountTokenV2](https://github.com/unlock-protocol/unlock/blob/master/smart-contracts/contracts/UnlockDiscountTokenV2.sol): the governance token contract (UDT). The only minter is the Unlock contract.
 
-
-You can use the [Unlock Dashboard](https://app.unlock-protocol.com/dashboard) to deploy a lock on Rinkeby (connect your wallet to Rinkeby) and then purchase a key using our "Demo". [The following video shows the way to achieve this](https://share.getcloudapp.com/4guPNlvW).
-
 [Smart contract docs are available on this page](https://docs.unlock-protocol.com/developers/smart-contracts).
 
 [Governance docs are available on this page](https://docs.unlock-protocol.com/governance/the-unlock-token).
+
+Note: the code being reviewed has not been deployed yet, even though it is an incremental upgrade on the existing deployed code. Similarly, the documentation reflects the current implementation, not the code being reviewed. You can find below the most significant change:
+
+## Tests
 
 You can run test in the smart-contracts repo with `yarn run test` (make sure you run `yarn install` first to install all dependencies).
 
 If you want to run the front-end applications, please check instruction [in the main Unlock repo](https://github.com/unlock-protocol/unlock).
 
-Notes: the code being reviewed has not been deployed yet, even though it is an incremental upgrade on the existing deployed code. Similarly, the documentation reflects the current implementation, not the code being reviewed. You can find below the most significant change:
 ### Upgradable locks
 
 The biggest change we introduced to the smart contract and that we hope to deploy in the next few weeks is to enable upgrades on the PublicLock smart contracts.
