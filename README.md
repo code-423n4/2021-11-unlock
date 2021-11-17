@@ -45,7 +45,7 @@ Under "SPONSORS ADD INFO HERE" heading below, include the following:
 - [X] Any other Twitter handles we can/should tag in (e.g. organizers' personal accounts, etc.) : [@julien51](https://twitter.com/julien51)
 - [X] [Your Discord URI](https://discord.com/invite/Ah6ZEJyTDp)
 - [X] [Your website](https://unlock-protocol.com/)
-- [ ] Optional: Do you have any quirks, recurring themes, iconic tweets, community "secret handshake" stuff we could work in? How do your people recognize each other, for example?
+- [NA] Optional: Do you have any quirks, recurring themes, iconic tweets, community "secret handshake" stuff we could work in? How do your people recognize each other, for example?
 - [X] Optional: your logo in Discord emoji format
 
 ---
@@ -58,17 +58,17 @@ Under "SPONSORS ADD INFO HERE" heading below, include the following:
 - [X] Add link to report form in contest details below
 - [X] Update pot sizes
 - [X] Fill in start and end times in contest bullets below.
-- [ ] Move any relevant information in "contest scope information" above to the bottom of this readme.
-- [ ] Add matching info to the [code423n4.com public contest data here](https://github.com/code-423n4/code423n4.com/blob/main/_data/contests/contests.csv))
-- [ ] Delete this checklist.
+- [X] Move any relevant information in "contest scope information" above to the bottom of this readme.
+- [X] Add matching info to the [code423n4.com public contest data here](https://github.com/code-423n4/code423n4.com/blob/main/_data/contests/contests.csv))
+- [ X] Delete this checklist.
 
 ## ⭐️ Sponsor: Contest prep
 - [ ] Make sure your code is thoroughly commented using the [NatSpec format](https://docs.soliditylang.org/en/v0.5.10/natspec-format.html#natspec-format).
 - [ ] Modify the bottom of this `README.md` file to describe how your code is supposed to work with links to any relevent documentation and any other criteria/details that the C4 Wardens should keep in mind when reviewing. ([Here's a well-constructed example.](https://github.com/code-423n4/2021-06-gro/blob/main/README.md))
-- [ ] Please have final versions of contracts and documentation added/updated in this repo **no less than 8 hours prior to contest start time.**
-- [ ] Ensure that you have access to the _findings_ repo where issues will be submitted.
-- [ ] Promote the contest on Twitter (optional: tag in relevant protocols, etc.)
-- [ ] Share it with your own communities (blog, Discord, Telegram, email newsletters, etc.)
+- [X] Please have final versions of contracts and documentation added/updated in this repo **no less than 8 hours prior to contest start time.**
+- [X] Ensure that you have access to the _findings_ repo where issues will be submitted.
+- [X] Promote the contest on Twitter (optional: tag in relevant protocols, etc.)
+- [X] Share it with your own communities (blog, Discord, Telegram, email newsletters, etc.)
 - [ ] Optional: pre-record a high-level overview of your protocol (not just specific smart contract functions). This saves wardens a lot of time wading through documentation.
 - [ ] Designate someone (or a team of people) to monitor DMs & questions in the C4 Discord (**#questions** channel) daily (Note: please *don't* discuss issues submitted by wardens in an open channel, as this could give hints to other wardens.)
 - [ ] Delete this checklist and all text above the line below when you're ready.
@@ -84,11 +84,11 @@ Under "SPONSORS ADD INFO HERE" heading below, include the following:
 - Starts November 18, 2021 00:00 UTC
 - Ends November 24, 2021 23:59 UTC
 
-This repo will be made public before the start of the contest. (C4 delete this line when made public)
-
 [ ⭐️ SPONSORS ADD INFO HERE ]
 
-Contracts:
+Unlock is a protocol for memberships that lets creators of all kinds deploy a "membership contract" (we call that a Lock) and that lets them then sell memberships (keys, implemented as NFT).
+
+## Contracts:
 
 * [Unlock.sol](https://github.com/unlock-protocol/unlock/blob/master/smart-contracts/contracts/Unlock.sol) : a factory contract that deploys all locks. It is also called back by the lock on key purchases to mint/distribute new UDT tokens. This contract is deployed once on each network currently supported (Mainnet, xDAI, Polygon, BSC). It is upgradable and currently 'owned' by a Gnosis multisig but will eventually be transfered to the DAO.
 
@@ -96,4 +96,24 @@ Contracts:
 
 * [UnlockDiscountTokenV2](https://github.com/unlock-protocol/unlock/blob/master/smart-contracts/contracts/UnlockDiscountTokenV2.sol): the governance token contract (UDT). The only minter is the Unlock contract.
 
+
+You can use the [Unlock Dashboard](https://app.unlock-protocol.com/dashboard) to deploy a lock on Rinkeby (connect your wallet to Rinkeby) and then purchase a key using our "Demo". [The following video shows the way to achieve this](https://share.getcloudapp.com/4guPNlvW).
+
+[Smart contract docs are available on this page](https://docs.unlock-protocol.com/developers/smart-contracts).
+
+[Governance docs are available on this page](https://docs.unlock-protocol.com/governance/the-unlock-token).
+
+You can run test in the smart-contracts repo with `yarn run test` (make sure you run `yarn install` first to install all dependencies).
+
+If you want to run the front-end applications, please check instruction [in the main Unlock repo](https://github.com/unlock-protocol/unlock).
+
+Notes: the code being reviewed has not been deployed yet, even though it is an incremental upgrade on the existing deployed code. Similarly, the documentation reflects the current implementation, not the code being reviewed. You can find below the most significant change:
+### Upgradable locks
+
+The biggest change we introduced to the smart contract and that we hope to deploy in the next few weeks is to enable upgrades on the PublicLock smart contracts.
+We want these locks to be upgradable when new versions of the protocol are released, but only by their "Lock Managers" ([See permission](https://docs.unlock-protocol.com/developers/smart-contracts/lock-api/access-control)).
+
+The approach we took is to deploy a Proxy Admin as part of the Unlock.sol contract. We updated the `createLock` to deploy a lock proxy instead of the lock directly. We also introduced an `upgradeLock` function that can then be trigger by one of the lock's lock managers to update the implementation.
+
+To support these uprgades, the Unlock contract will now keep a list of implementation, as well the corresponding version numbers as we only support incremental upgrades.
 
